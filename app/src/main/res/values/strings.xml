@@ -1,8 +1,8 @@
 <resources>
     <string name="app_name">Pasta</string>
-    <string name="backward">back</string>
-    <string name="play">play</string>
-    <string name="pause">pause</string>
-    <string name="stop">stop</string>
-    <string name="forward">forward</string>
+    <string name="backward">＜＜</string>
+    <string name="play">＞</string>
+    <string name="pause">||</string>
+    <string name="stop">□</string>
+    <string name="forward">＞＞</string>
 </resources>
