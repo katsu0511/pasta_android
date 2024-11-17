@@ -26,6 +26,7 @@ class MainActivity : AppCompatActivity() {
         val stopButton = findViewById<Button>(R.id.stop)
         stopButton.setOnClickListener{
             musicPlayer.stopFull()
+            playButton.setText(R.string.play)
         }
 
         val pastaButton = findViewById<Button>(R.id.pasta)

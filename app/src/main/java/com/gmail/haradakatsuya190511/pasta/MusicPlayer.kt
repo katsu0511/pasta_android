@@ -10,8 +10,10 @@ class MusicPlayer(context: Context) {
     private val myContext: Context = context
 
     fun playFull() {
-        fullPlayer = MediaPlayer.create(myContext, R.raw.full)
-        fullPlayer.isLooping = false
+        if (!::fullPlayer.isInitialized) {
+            fullPlayer = MediaPlayer.create(myContext, R.raw.full)
+            fullPlayer.isLooping = false
+        }
         fullPlayer.start()
     }
 
@@ -21,8 +23,7 @@ class MusicPlayer(context: Context) {
 
     fun stopFull() {
         fullPlayer.stop()
-        fullPlayer.reset()
-        fullPlayer.release()
+        fullPlayer.prepare()
     }
 
     fun playPasta() {
