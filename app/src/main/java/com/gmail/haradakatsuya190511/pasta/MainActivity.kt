@@ -1,22 +1,36 @@
 package com.gmail.haradakatsuya190511.pasta
 
 import android.os.Bundle
-import com.google.android.material.snackbar.Snackbar
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import android.view.Menu
-import android.view.MenuItem
-import com.gmail.haradakatsuya190511.pasta.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var appBarConfiguration: AppBarConfiguration
-    private lateinit var binding: ActivityMainBinding
+    private val musicPlayer: MusicPlayer = MusicPlayer(this@MainActivity)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
+
+        val playButton = findViewById<Button>(R.id.play)
+        playButton.setOnClickListener{
+            if (playButton.text == "＞") {
+                musicPlayer.playFull()
+                playButton.setText(R.string.pause)
+            } else {
+                musicPlayer.pauseFull()
+                playButton.setText(R.string.play)
+            }
+        }
+
+        val stopButton = findViewById<Button>(R.id.stop)
+        stopButton.setOnClickListener{
+            musicPlayer.stopFull()
+        }
+
+        val pastaButton = findViewById<Button>(R.id.pasta)
+        pastaButton.setOnClickListener{
+            musicPlayer.playPasta()
+        }
     }
 }
