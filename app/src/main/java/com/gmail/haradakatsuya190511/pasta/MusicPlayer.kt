@@ -30,6 +30,9 @@ class MusicPlayer(context: Context) {
             pastaPlayer = MediaPlayer.create(myContext, R.raw.pasta)
             pastaPlayer.isLooping = false
             pastaPlayer.start()
+            if (::fullPlayer.isInitialized) {
+                fullPlayer.setVolume(0.0F, 0.0F)
+            }
         }
     }
 }
