@@ -26,6 +26,22 @@ class MusicPlayer(context: Context) {
         fullPlayer.prepare()
     }
 
+    fun forward() {
+        if (fullPlayer.currentPosition > fullPlayer.duration - 5000) {
+            fullPlayer.seekTo(fullPlayer.duration)
+        } else {
+            fullPlayer.seekTo(fullPlayer.currentPosition + 5000)
+        }
+    }
+
+    fun rewind() {
+        if (fullPlayer.currentPosition < 5000) {
+            fullPlayer.seekTo(0)
+        } else {
+            fullPlayer.seekTo(fullPlayer.currentPosition - 5000)
+        }
+    }
+
     fun playPasta() {
         if (!::pastaPlayer.isInitialized || !pastaPlayer.isPlaying) {
             pastaPlayer = MediaPlayer.create(myContext, R.raw.pasta)

@@ -29,6 +29,16 @@ class MainActivity : AppCompatActivity() {
             playButton.setText(R.string.play)
         }
 
+        val forwardButton = findViewById<Button>(R.id.forward)
+        forwardButton.setOnClickListener{
+            musicPlayer.forward()
+        }
+
+        val rewindButton = findViewById<Button>(R.id.rewind)
+        rewindButton.setOnClickListener{
+            musicPlayer.rewind()
+        }
+
         val pastaButton = findViewById<Button>(R.id.pasta)
         pastaButton.setOnClickListener{
             musicPlayer.playPasta()
