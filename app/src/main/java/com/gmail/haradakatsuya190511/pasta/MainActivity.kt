@@ -16,5 +16,11 @@ class MainActivity : AppCompatActivity() {
         playButton.setOnClickListener{
             soundPool.play(full, 1.0f, 1.0f, 0, 0, 1.0f)
         }
+
+        val pasta = soundPool.load(this, R.raw.pasta, 1)
+        val pastaButton = findViewById<Button>(R.id.pasta)
+        pastaButton.setOnClickListener{
+            soundPool.play(pasta, 1.0f, 1.0f, 0, 0, 1.0f)
+        }
     }
 }
