@@ -17,6 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_background"
             android:text="@string/rewind"
             android:layout_marginStart="16dp"
             android:layout_marginEnd="8dp" />
@@ -26,6 +27,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_background"
             android:text="@string/play"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp" />
@@ -35,6 +37,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_background"
             android:text="@string/stop"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="8dp" />
@@ -44,6 +47,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
+            android:background="@drawable/button_background"
             android:text="@string/forward"
             android:layout_marginStart="8dp"
             android:layout_marginEnd="16dp" />
