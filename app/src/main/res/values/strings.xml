@@ -1,8 +1,3 @@
 <resources>
     <string name="app_name">Pasta</string>
-    <string name="rewind">＜＜</string>
-    <string name="play">＞</string>
-    <string name="pause">||</string>
-    <string name="stop">□</string>
-    <string name="forward">＞＞</string>
 </resources>
