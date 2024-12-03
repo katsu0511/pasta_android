@@ -34,7 +34,7 @@ class MusicPlayer(context: Context) {
         }
     }
 
-    fun rewind() {
+    fun backward() {
         if (fullPlayer.currentPosition < 5000) {
             fullPlayer.seekTo(0)
         } else {

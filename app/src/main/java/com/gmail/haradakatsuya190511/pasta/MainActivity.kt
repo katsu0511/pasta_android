@@ -15,33 +15,43 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
         val playButton = findViewById<ImageButton>(R.id.play)
+        val stopButton = findViewById<ImageButton>(R.id.stop)
+        val backwardButton = findViewById<ImageButton>(R.id.backward)
+        val forwardButton = findViewById<ImageButton>(R.id.forward)
+        val pastaButton = findViewById<Button>(R.id.pasta)
+        var state = playButton.background.constantState
+
         playButton.setOnClickListener{
-            if (playButton.background.constantState == ContextCompat.getDrawable(this, R.drawable.play)!!.constantState) {
+            if (state == ContextCompat.getDrawable(this, R.drawable.play)!!.constantState) {
                 musicPlayer.playFull()
-                playButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.pause));
+                playButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.pause))
+                stopButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.stop))
+                backwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.backward))
+                forwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.forward))
+                state = ContextCompat.getDrawable(this, R.drawable.pause)!!.constantState
             } else {
                 musicPlayer.pauseFull()
-                playButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.play));
+                playButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.play))
+                state = ContextCompat.getDrawable(this, R.drawable.play)!!.constantState
             }
         }
 
-        val stopButton = findViewById<ImageButton>(R.id.stop)
         stopButton.setOnClickListener{
             musicPlayer.stopFull()
-            playButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.play));
+            playButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.play))
+            stopButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.invalid_stop))
+            backwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.invalid_backward))
+            forwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.invalid_forward))
         }
 
-        val forwardButton = findViewById<ImageButton>(R.id.forward)
+        backwardButton.setOnClickListener{
+            musicPlayer.backward()
+        }
+
         forwardButton.setOnClickListener{
             musicPlayer.forward()
         }
 
-        val rewindButton = findViewById<ImageButton>(R.id.rewind)
-        rewindButton.setOnClickListener{
-            musicPlayer.rewind()
-        }
-
-        val pastaButton = findViewById<Button>(R.id.pasta)
         pastaButton.setOnClickListener{
             musicPlayer.playPasta()
         }
