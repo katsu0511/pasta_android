@@ -20,6 +20,9 @@ class MainActivity : AppCompatActivity() {
         val forwardButton = findViewById<ImageButton>(R.id.forward)
         val pastaButton = findViewById<Button>(R.id.pasta)
         var state = playButton.background.constantState
+        stopButton.isEnabled = false
+        backwardButton.isEnabled = false
+        forwardButton.isEnabled = false
 
         playButton.setOnClickListener{
             if (state == ContextCompat.getDrawable(this, R.drawable.play)!!.constantState) {
@@ -29,6 +32,9 @@ class MainActivity : AppCompatActivity() {
                 backwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.backward))
                 forwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.forward))
                 state = ContextCompat.getDrawable(this, R.drawable.pause)!!.constantState
+                stopButton.isEnabled = true
+                backwardButton.isEnabled = true
+                forwardButton.isEnabled = true
             } else {
                 musicPlayer.pauseFull()
                 playButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.play))
@@ -37,19 +43,29 @@ class MainActivity : AppCompatActivity() {
         }
 
         stopButton.setOnClickListener{
-            musicPlayer.stopFull()
-            playButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.play))
-            stopButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.invalid_stop))
-            backwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.invalid_backward))
-            forwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.invalid_forward))
+            if (stopButton.isEnabled) {
+                musicPlayer.stopFull()
+                playButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.play))
+                stopButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.invalid_stop))
+                backwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.invalid_backward))
+                forwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.invalid_forward))
+                state = ContextCompat.getDrawable(this, R.drawable.play)!!.constantState
+                stopButton.isEnabled = false
+                backwardButton.isEnabled = false
+                forwardButton.isEnabled = false
+            }
         }
 
         backwardButton.setOnClickListener{
-            musicPlayer.backward()
+            if (backwardButton.isEnabled) {
+                musicPlayer.backward()
+            }
         }
 
         forwardButton.setOnClickListener{
-            musicPlayer.forward()
+            if (forwardButton.isEnabled) {
+                musicPlayer.forward()
+            }
         }
 
         pastaButton.setOnClickListener{

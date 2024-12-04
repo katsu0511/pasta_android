@@ -37,7 +37,6 @@
                 android:layout_height="80dp"
                 android:layout_marginStart="18dp"
                 android:layout_marginEnd="10dp"
-                android:enabled="false"
                 android:background="@drawable/invalid_backward" />
 
             <ImageButton
@@ -54,7 +53,6 @@
                 android:layout_height="80dp"
                 android:layout_marginStart="9dp"
                 android:layout_marginEnd="9dp"
-                android:enabled="false"
                 android:background="@drawable/invalid_stop" />
 
             <ImageButton
@@ -63,7 +61,6 @@
                 android:layout_height="80dp"
                 android:layout_marginStart="10dp"
                 android:layout_marginEnd="18dp"
-                android:enabled="false"
                 android:background="@drawable/invalid_forward" />
 
         </LinearLayout>
