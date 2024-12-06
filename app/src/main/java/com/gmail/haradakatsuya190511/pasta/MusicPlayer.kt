@@ -55,4 +55,8 @@ class MusicPlayer(context: Context) {
             }
         }
     }
+
+    fun getCurrentPosition(): Int {
+        return fullPlayer.currentPosition;
+    }
 }

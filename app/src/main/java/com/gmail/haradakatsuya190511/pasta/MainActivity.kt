@@ -3,12 +3,14 @@ package com.gmail.haradakatsuya190511.pasta
 import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
     private val musicPlayer: MusicPlayer = MusicPlayer(this@MainActivity)
+    private val seekBar: SeekBar = findViewById(R.id.seek_bar);
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,6 +25,20 @@ class MainActivity : AppCompatActivity() {
         stopButton.isEnabled = false
         backwardButton.isEnabled = false
         forwardButton.isEnabled = false
+
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
+                seek.progress = musicPlayer.getCurrentPosition()
+            }
+
+            override fun onStartTrackingTouch(seek: SeekBar) {
+
+            }
+
+            override fun onStopTrackingTouch(seek: SeekBar) {
+
+            }
+        })
 
         playButton.setOnClickListener{
             if (state == ContextCompat.getDrawable(this, R.drawable.play)!!.constantState) {
