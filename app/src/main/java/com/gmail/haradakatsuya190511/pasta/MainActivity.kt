@@ -2,7 +2,10 @@ package com.gmail.haradakatsuya190511.pasta
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.SeekBar
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 
 class MainActivity : AppCompatActivity() {
 
@@ -12,34 +15,75 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val playButton = findViewById<Button>(R.id.play)
+        val seekBar: SeekBar = findViewById(R.id.seek_bar);
+        val playButton = findViewById<ImageButton>(R.id.play)
+        val stopButton = findViewById<ImageButton>(R.id.stop)
+        val backwardButton = findViewById<ImageButton>(R.id.backward)
+        val forwardButton = findViewById<ImageButton>(R.id.forward)
+        val pastaButton = findViewById<Button>(R.id.pasta)
+        var state = playButton.background.constantState
+        stopButton.isEnabled = false
+        backwardButton.isEnabled = false
+        forwardButton.isEnabled = false
+
+        seekBar.setOnSeekBarChangeListener(object : SeekBar.OnSeekBarChangeListener {
+            override fun onProgressChanged(seek: SeekBar, progress: Int, fromUser: Boolean) {
+                seek.progress = musicPlayer.getCurrentPosition()
+            }
+
+            override fun onStartTrackingTouch(seek: SeekBar) {
+
+            }
+
+            override fun onStopTrackingTouch(seek: SeekBar) {
+
+            }
+        })
+
         playButton.setOnClickListener{
-            if (playButton.text == "＞") {
+            if (state == ContextCompat.getDrawable(this, R.drawable.play)!!.constantState) {
                 musicPlayer.playFull()
-                playButton.setText(R.string.pause)
+                playButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.pause))
+                stopButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.stop))
+                backwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.backward))
+                forwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.forward))
+                state = ContextCompat.getDrawable(this, R.drawable.pause)!!.constantState
+                stopButton.isEnabled = true
+                backwardButton.isEnabled = true
+                forwardButton.isEnabled = true
             } else {
                 musicPlayer.pauseFull()
-                playButton.setText(R.string.play)
+                playButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.play))
+                state = ContextCompat.getDrawable(this, R.drawable.play)!!.constantState
             }
         }
 
-        val stopButton = findViewById<Button>(R.id.stop)
         stopButton.setOnClickListener{
-            musicPlayer.stopFull()
-            playButton.setText(R.string.play)
+            if (stopButton.isEnabled) {
+                musicPlayer.stopFull()
+                playButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.play))
+                stopButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.invalid_stop))
+                backwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.invalid_backward))
+                forwardButton.setImageDrawable(ContextCompat.getDrawable(this, R.drawable.invalid_forward))
+                state = ContextCompat.getDrawable(this, R.drawable.play)!!.constantState
+                stopButton.isEnabled = false
+                backwardButton.isEnabled = false
+                forwardButton.isEnabled = false
+            }
         }
 
-        val forwardButton = findViewById<Button>(R.id.forward)
+        backwardButton.setOnClickListener{
+            if (backwardButton.isEnabled) {
+                musicPlayer.backward()
+            }
+        }
+
         forwardButton.setOnClickListener{
-            musicPlayer.forward()
+            if (forwardButton.isEnabled) {
+                musicPlayer.forward()
+            }
         }
 
-        val rewindButton = findViewById<Button>(R.id.rewind)
-        rewindButton.setOnClickListener{
-            musicPlayer.rewind()
-        }
-
-        val pastaButton = findViewById<Button>(R.id.pasta)
         pastaButton.setOnClickListener{
             musicPlayer.playPasta()
         }
