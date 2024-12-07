@@ -10,12 +10,12 @@ import androidx.core.content.ContextCompat
 class MainActivity : AppCompatActivity() {
 
     private val musicPlayer: MusicPlayer = MusicPlayer(this@MainActivity)
-    private val seekBar: SeekBar = findViewById(R.id.seek_bar);
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+        val seekBar: SeekBar = findViewById(R.id.seek_bar);
         val playButton = findViewById<ImageButton>(R.id.play)
         val stopButton = findViewById<ImageButton>(R.id.stop)
         val backwardButton = findViewById<ImageButton>(R.id.backward)
