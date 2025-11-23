@@ -1,15 +1,58 @@
-*.iml
-.gradle
-/local.properties
-/.idea/caches
-/.idea/libraries
-/.idea/modules.xml
-/.idea/workspace.xml
-/.idea/navEditor.xml
-/.idea/assetWizardSettings.xml
-.DS_Store
-/build
-/captures
-.externalNativeBuild
-.cxx
+# Gradle
+.gradle/
+build/
+**/build/
+
+# Local configuration
 local.properties
+
+# Android Studio / IntelliJ
+.idea/
+# !.idea/codeStyles/Project.xml
+# !.idea/vcs.xml
+*.iml
+
+# Native / NDK
+.externalNativeBuild/
+.cxx/
+obj/
+*.o
+
+# Temporary files
+captures/
+
+# Kotlin
+*.kotlin_metadata
+
+# Java / Kotlin / Android
+*.class
+*.log
+*.dex
+
+# APK / AAB / output
+*.apk
+*.ap_
+*.aab
+
+# Keystore files
+*.jks
+*.keystore
+*.pem
+*.p12
+
+# Generated files
+gen/
+out/
+
+# Lint
+lint/intermediates/
+lint/generated/
+lint/outputs/
+lint/tmp/
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Jetpack Compose compiler caches
+.compose-cache/
